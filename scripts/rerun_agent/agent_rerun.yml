@@ -1,0 +1,45 @@
+#exp_args:
+set_seed: True  # set seed for python and all other libs
+seed: 143259  # seed for experiment
+dataset_seed: 143259
+source_folder: small_scale_exp_new
+destination_folder: cl_runs_small_scale_exp_rerun
+wandb_logging: True
+wandb_project_name: dqn_mnist_new_learned_agent
+
+#wandb_run_id_suffix: kmnist
+run_id: 10
+
+#al_task_structure:
+dataset_task: mnist
+train_val_split: 3
+
+#predictor_model:
+model: fcnn_2layer
+model_kwargs:
+  pretrained: False   # set to True if parameters are loaded from pretrained model
+  pth_file_name: None   # name of the dataset on which the model was pre-trained. Also uses the CNN as feature extractor
+wrapped_model_kwargs:
+  weight_decay: !!float 1e-8
+  learning_rate: !!float 2e-3
+  num_epochs: 30
+  patience: 5
+
+#gym_env_args:
+env_type: standard
+al_budget: 400
+state_type: prob_preds
+
+#agent_model_to_eval:
+eval_rl_agent: True
+eval_online: False
+agent_types:
+  - best_agent
+#  - final_agent
+
+dqn_train_kwargs:
+  gradient_steps: 1
+  batch_size: 128
+
+#random_agent_eval_args:
+eval_random_agent: False

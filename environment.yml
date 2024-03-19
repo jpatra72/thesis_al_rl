@@ -1,0 +1,45 @@
+name: albpnn
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+
+dependencies:
+  - python>=3.6
+  - pip
+  # BASICS
+  - numpy
+  - scipy
+  - pandas
+  - tqdm
+  - rich
+  - psutil
+  - pillow
+  - xlrd
+  - openpyxl
+  - pyyaml
+  # VISUALIZATION
+  - matplotlib
+  - seaborn
+  # ML, STATS & DEEP LEARNING
+  - pytorch
+  - torchvision
+  - scikit-learn
+
+  - pip:
+      - tensorboard
+      - wandb
+      - gymnasium
+      - stable-baselines3
+
+  # DEVELOPMENT ONLY PACKAGES (could also be kept in a separate environment file)
+  - jupyterlab
+  - pytest
+  - pytest-cov
+  - tox
+  - pre_commit
+  - nbdime
+  - nbstripout
+  - sphinx
+  - recommonmark
+# pip install -e . for gymnasium

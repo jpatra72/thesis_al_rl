@@ -1,0 +1,58 @@
+#exp_args:
+set_seed: True  # set seed for python and all other libs
+seed: 143259  # seed for experiment
+dataset_seed: 143259
+test_pipeline: True
+log_folder_name: small_scale_exp_new_test
+wandb_logging: False
+wandb_project_name: dqn_mnist_new
+
+#al_task_structure:
+dataset_task: mnist
+train_val_split: 50
+
+#predictor_model:
+model: fcnn_2layer
+model_kwargs:
+  pretrained: False   # set to True if parameters are loaded from pretrained model
+  pth_file_name: None   # name of the dataset on which the model was pre-trained. Also uses the CNN as feature extractor
+wrapped_model_kwargs:
+  weight_decay: !!float 1e-8
+  learning_rate: !!float 2e-3
+  num_epochs: 30
+  patience: 5
+
+#gym_env_args:
+env_type: standard
+n_envs: 1  # the number of environments you wish to have in parallel
+sort_similarity: True
+
+
+#al_args:
+al_budget: 10  # query budget
+
+#rl_agent_train_args:
+buffer_size: 3_000  # size of the replay buffer
+learning_rate: !!float 0.9e-4  # the learning rate for RL agent's ADAM optimizer
+learning_starts: 0  # how many steps of the model to collect transitions for before learning starts
+gamma: 0.99  # gamma value [0.99, 0.98]
+train_freq: 4  # training frequency
+gradient_steps: 1  # number of gradient steps every train_freq
+target_update_interval: 250  # Target update interval
+batch_size: 128  # Batch size
+exploration_fraction: 0.08  # Exploration fraction
+exploration_initial_eps: 1.0  # Exploration initial epsilon
+exploration_final_eps: 0.02  # Exploration final epsilon
+total_timesteps: 10_000  # the total number of samples (env steps) to train on
+
+#rl_agent_eval_during_training:
+eval_during_training: True
+eval_frequency: 50
+
+#rl_agent_eval_args:
+agent_types:
+#  - best_agent
+  - final_agent
+
+#random_agent_eval_args:
+eval_random_agent: False

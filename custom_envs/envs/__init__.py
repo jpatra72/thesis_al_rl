@@ -1,0 +1,3 @@
+from custom_envs.envs.active_image_classification import ImageClassifier
+from custom_envs.envs.active_feature_classification import ImgFeatureClassifier
+from custom_envs.envs.active_image_classification_new import ImageClassifier_new
